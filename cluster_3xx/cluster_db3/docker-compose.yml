@@ -1,0 +1,11 @@
+version: "2"
+services:
+
+  db3:
+    image: arangodb/arangodb
+    environment:
+    - ARANGO_NO_AUTH=1
+    command: arangod --server.authentication=false --server.endpoint tcp://0.0.0.0:8529 --cluster.my-address tcp://db3:8529 --cluster.my-local-info db3 --cluster.my-role PRIMARY --cluster.agency-endpoint tcp://agency1:8529 --cluster.agency-endpoint tcp://agency2:8529 --cluster.agency-endpoint tcp://agency3:8529 --log.file /var/log/arangodb3/arangod.log
+    volumes:
+    - ./data/d3:/var/lib/arangodb3
+    - ./logs/d3:/var/log/arangodb3

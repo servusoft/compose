@@ -1,0 +1,13 @@
+version: "2"
+services:
+
+  coordinator1:
+    image: arangodb/arangodb
+    environment:
+    - ARANGO_NO_AUTH=1
+    command: arangod --server.authentication=false --server.endpoint tcp://0.0.0.0:8529 --cluster.my-address tcp://coordinator1:8529 --cluster.my-local-info coord1  --cluster.my-role COORDINATOR --cluster.agency-endpoint tcp://agency1:8529 --log.file /var/log/arangodb3/arangod.log
+    volumes:
+    - ./data/c1:/var/lib/arangodb3
+    - ./apps/c1:/var/lib/arangodb3-apps
+    - ./logs/c1:/var/log/arangodb3
+    ports: ['8001:8529']

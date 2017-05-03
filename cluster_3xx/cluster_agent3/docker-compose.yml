@@ -1,0 +1,9 @@
+version: "2"
+services:
+  agency3:
+    image: arangodb/arangodb
+    environment:
+    - ARANGO_NO_AUTH=1
+    command: arangod --server.endpoint tcp://0.0.0.0:8529 --agency.my-address tcp://agency3:8529 --server.authentication false --agency.size 3 --agency.activate true --agency.supervision true --agency.endpoint tcp://agency1:8529 --agency.endpoint tcp://agency2:8529 --agency.endpoint tcp://agency3:8529 --log.file /var/log/arangodb3/arangod.log
+    volumes:
+    - ./logs/a3:/var/log/arangodb3

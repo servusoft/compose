@@ -1,0 +1,14 @@
+version: "2"
+
+services:
+  db:
+    image: arangodb/arangodb
+    environment:
+      - ARANGO_NO_AUTH=1
+    command: arangod --server.authentication=false --server.endpoint tcp://0.0.0.0:8529 --log.file /var/log/arangodb3/arangod.log 
+
+    ports: ['8000:8529']
+    volumes:
+      - ./data:/var/lib/arangodb3
+      - ./apps:/var/lib/arangodb3-apps
+      - ./logs:/var/log/arangodb3
